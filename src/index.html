@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../images/favicon-apple.png" />
+    <link rel="stylesheet" href="./styles/fonts/fonts.css" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/light.css" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <main class="main">
+      <h1 class="title">Todo list</h1>
+      <nav class="nav-todo">
+        <div class="input-search">
+          <input
+            type="text"
+            class="search todo-input"
+            placeholder="Search note..."
+          />
+          <san class="search-loop"></san>
+        </div>
+        <div class="select">
+          <label class="select__label">
+            <span class="select__select-title">ALL</span>
+            <span class="checkbox-pseudo"></span>
+          </label>
+          <ul class="select-list">
+            <li class="select-list__item active">
+              <span class="select-all">All</span>
+            </li>
+            <li class="select-list__item">
+              <span class="select-complete">Complete</span>
+            </li>
+            <li class="select-list__item">
+              <span class="select-incomplete">Incomplete</span>
+            </li>
+          </ul>
+        </div>
+        <span class="theme-change"></span>
+      </nav>
+      <ul class="todos-list"></ul>
+      <div class="append-todo"></div>
+    </main>
+    <div class="modal-note">
+      <div class="note-wrapper">
+        <h2 class="note__title">NEW NOTE</h2>
+        <input
+          type="text"
+          class="todo-input note-input"
+          minlength="3"
+          maxlength="50"
+        />
+        <div class="note__buttons">
+          <button class="note__buttons__cancel">Cancel</button>
+          <button class="note__buttons__apply">Apply</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>

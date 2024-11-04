@@ -1,0 +1,17 @@
+.theme-light {
+  --main-bg-color: #f7f7f7;
+  --main-color: #000;
+  --opacity-color: 0 0 0;
+}
+
+.theme-light .todo-input {
+  border: 1px solid var(--elem-bg-color);
+}
+
+.theme-light .todo-input:focus-visible {
+  outline: none;
+}
+
+.theme-light .search-loop {
+  background: url(../../images/loop-purple.svg) center / cover no-repeat;
+}

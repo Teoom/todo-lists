@@ -1,0 +1,330 @@
+.main {
+  block-size: 100vb;
+  max-inline-size: 750px;
+  margin: 0 auto;
+  padding: 40px 0;
+  position: relative;
+}
+
+.title {
+  font-size: 26px;
+  text-transform: uppercase;
+  margin-block-end: 18px;
+  text-align: center;
+}
+
+.nav-todo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-block-end: 30px;
+}
+
+.input-search {
+  inline-size: 79.4%;
+  min-inline-size: 300px;
+  position: relative;
+}
+
+.todo-input {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 11px 8.5px 11px 16px;
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+  border: 1px solid var(--main-color);
+  color: var(---main-color);
+}
+
+.search {
+  inline-size: 100%;
+}
+
+.search-loop {
+  content: "";
+  inline-size: 21px;
+  block-size: 21px;
+  background: url(../../images/loop.svg) center / cover no-repeat;
+  position: absolute;
+  inset-block-start: 8.5px;
+  inset-inline-end: 8.5px;
+  cursor: pointer;
+}
+
+.todo-input:focus {
+  outline: none;
+}
+
+.todo-input:focus-visible {
+  outline: 2px solid #ffffff50;
+}
+
+.select {
+  padding: 10px;
+  background-color: var(--elem-bg-color);
+  border-radius: 5px;
+  position: relative;
+}
+
+.select__select-title {
+  font-size: 18px;
+  color: #fff;
+}
+
+.select__label {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  margin-right: 0;
+}
+
+.checkbox-pseudo {
+  cursor: pointer;
+  background: url(../../images/arrow-down.svg) center / cover no-repeat;
+  display: block;
+  block-size: 9px;
+  inline-size: 10px;
+  user-select: none;
+}
+
+.select-list {
+  inline-size: 100%;
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+  background-color: #fff;
+  padding: 8.5px 0;
+  border: 1px solid var(--elem-bg-color);
+  border-radius: 5px;
+  display: none;
+}
+
+.select-list__item {
+  color: var(--elem-bg-color);
+  font-size: 15px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select-list__item:hover {
+  background-color: #6c63ff20;
+}
+
+.select-list__item:active {
+  background-color: #6c63ff70;
+  color: white;
+}
+
+.select-list__item.active {
+  background-color: #6c63ff70;
+  color: white;
+}
+
+.select-all,
+.select-complete,
+.select-incomplete {
+  display: block;
+}
+
+.theme-change {
+  inline-size: 38px;
+  block-size: 38px;
+  display: flex;
+  background-color: var(--elem-bg-color);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.theme-change::after {
+  content: "";
+  inline-size: 22px;
+  block-size: 22px;
+  background: url(../../images/sun.svg) center / cover no-repeat;
+  margin: auto;
+}
+
+.todos-list {
+  user-select: none;
+  display: grid;
+  grid-template-columns: 520px;
+  justify-content: center;
+}
+
+.todos-list__item {
+  inline-size: 100%;
+  padding: 17px 8px 17px 0;
+  display: flex;
+  align-items: center;
+}
+
+.todos-list__item:not(:last-of-type) {
+  border-block-end: 1px solid #6c63ff50;
+}
+
+.todo-list__square {
+  inline-size: 26px;
+  block-size: 26px;
+  border: 1px solid var(--elem-bg-color);
+  border-radius: 2px;
+  display: grid;
+  margin-inline-end: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.todo-list__textarea {
+  resize: none;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: uppercase;
+  padding: 5px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  min-inline-size: 420px;
+  margin-inline-end: 8px;
+  transition: 0.3s;
+  color: var(--main-color);
+}
+
+.todo-list__textarea:focus {
+  outline: none;
+}
+
+.todo-list__textarea:focus-visible {
+  outline: 1px solid var(--elem-bg-color);
+}
+
+.todo-list__textarea:disabled {
+  color: var(---main-color);
+}
+
+.item-correct .todo-list__square {
+  background-color: var(--elem-bg-color);
+}
+
+.item-correct .todo-list__square::after {
+  content: "";
+  inline-size: 14px;
+  block-size: 14px;
+  background: url(../../images/done.svg) center / cover no-repeat;
+  margin: 4px auto;
+}
+
+.item-correct .todo-list__textarea {
+  text-decoration: line-through;
+  color: rgba(var(--opacity-color) / 0.5);
+}
+
+.todo-list__tools {
+  display: flex;
+  gap: 10px;
+}
+
+.todo-list__tools-edit {
+  display: grid;
+  block-size: 13px;
+  inline-size: 13px;
+  cursor: pointer;
+}
+
+.todo-list__tools-delete {
+  display: grid;
+  cursor: pointer;
+  transition: 0.3s;
+  background: url(../../images/trash.svg) no-repeat center / cover;
+  block-size: 18px;
+  inline-size: 18px;
+}
+
+.append-todo {
+  block-size: 50px;
+  inline-size: 50px;
+  background-color: var(--elem-bg-color);
+  border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  inset-block-end: 40px;
+  inset-inline-end: 0;
+}
+
+.append-todo::before {
+  content: "";
+  inline-size: 25px;
+  block-size: 25px;
+  margin: auto;
+  background: url(../../images/plus.svg) no-repeat center / cover;
+}
+
+.append-todo:hover {
+  background-color: #534cc2;
+}
+
+.modal-note {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  inline-size: 100vi;
+  block-size: 100vb;
+  background-color: #25252570;
+}
+
+.note-wrapper {
+  inline-size: 500px;
+  block-size: 289px;
+  margin: 118px auto 0;
+  background-color: var(--main-bg-color);
+  border: 1px solid #fff;
+  border-radius: 16px;
+  padding: 18px 30px;
+  display: grid;
+  grid-template-rows: min-content max-content 1fr;
+}
+
+.note__title {
+  justify-self: center;
+  margin-block-end: 25px;
+}
+
+.note__buttons {
+  align-self: end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note__buttons__cancel {
+  color: var(--elem-bg-color);
+  border: 1px solid var(--elem-bg-color);
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: transparent;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.note__buttons__cancel:hover {
+  background-color: #6c63ff50;
+  color: white;
+}
+
+.note__buttons__apply {
+  color: #fff;
+  border: 1px solid var(--elem-bg-color);
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: var(--elem-bg-color);
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.note__buttons__apply:hover {
+  background-color: #ffffff10;
+  color: var(--elem-bg-color);
+}
