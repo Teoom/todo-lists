@@ -19,38 +19,33 @@ function isSelectActive(select1, select2, select3) {
   select3.parentElement.classList.add("active");
 }
 
-function addActive(menu, todosList, renderNote, state) {
+
+
+function addActive(menu, todosList, renderNote, renderNoFound, funcs, state) {
   const all = document.querySelector(".select-all");
   const complete = document.querySelector(".select-complete");
   const incomplete = document.querySelector(".select-incomplete");
 
+  const className = localStorage.getItem('class')
   const localItems = JSON.parse(localStorage.getItem("todoItems"));
 
   if (menu) {
     if (state === "select-complete") {
       isSelectActive(all, incomplete, complete);
+
       let completeItems = localItems.filter((item) => {
         return item.status ? true : false;
       });
 
       if (completeItems.length) {
-        for (let i = 0; i < todosList.children.length; i++) {
-          todosList.children[i].remove();
+        funcs[0](todosList)
+        funcs[1](todosList, renderNote, completeItems)
 
-          --i;
-        }
-
-        for (let item of completeItems) {
-          todosList.append(renderNote(item.status, item.text, item.isDisabled));
-        }
       }
 
       if (!completeItems.length) {
-        for (let i = 0; i < todosList.children.length; i++) {
-          todosList.children[i].remove();
-
-          i--;
-        }
+        funcs[0](todosList)
+        renderNoFound(todosList)
       }
     } else {
       isSelectActive(all, complete, incomplete);
@@ -59,23 +54,14 @@ function addActive(menu, todosList, renderNote, state) {
       });
 
       if (incompleteItems.length) {
-        for (let i = 0; i < todosList.children.length; i++) {
-          todosList.children[i].remove();
+        funcs[0](todosList)
+        funcs[1](todosList, renderNote, incompleteItems)
 
-          --i;
-        }
-
-        for (let item of incompleteItems) {
-          todosList.append(renderNote(item.status, item.text, item.isDisabled));
-        }
       }
 
       if (!incompleteItems.length) {
-        for (let i = 0; i < todosList.children.length; i++) {
-          todosList.children[i].remove();
-
-          --i;
-        }
+        funcs[0](todosList)
+        renderNoFound(todosList)
       }
     }
 
@@ -84,35 +70,46 @@ function addActive(menu, todosList, renderNote, state) {
 
   isSelectActive(complete, incomplete, all);
 
-  for (let i = 0; i < todosList.children.length; i++) {
-    todosList.children[i].remove();
+  if (localItems.length > 1) {
 
-    --i;
+    funcs[0](todosList)
+    funcs[1](todosList, renderNote, localItems)
+
+  } else {
+
+    if (className === 'todo-list__no-found') {
+      funcs[0](todosList)
+      renderNoFound(todosList)
+    } else {
+      funcs[0](todosList)
+      funcs[1](todosList, renderNote, localItems)
+    }
   }
 
-  for (let item of localItems) {
-    todosList.append(renderNote(item.status, item.text, item.isDisabled));
-  }
+
 }
 
-export function btnToggleMenu(todosList, renderNote) {
+
+export function btnToggleMenu(todosList, renderNote, renderNoFound, funcs) {
   btnArrow.addEventListener("click", () => {
     toggleMenu();
+    localStorage.setItem('class', todosList.children[0].classList[0])
   });
 
   for (let elem of selectList) {
     elem.addEventListener("click", (e) => {
       if (elem.children[0].className === "select-all") {
         toggleMenu();
-        addActive(false, todosList, renderNote);
+        addActive(false, todosList, renderNote, renderNoFound, funcs);
       }
 
       if (
         elem.children[0].className === "select-complete" ||
         elem.children[0].className === "select-incomplete"
       ) {
-        addActive(true, todosList, renderNote, elem.children[0].classList[0]);
+        addActive(true, todosList, renderNote, renderNoFound, funcs, elem.children[0].classList[0]);
       }
     });
   }
 }
+

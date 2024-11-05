@@ -35,6 +35,7 @@
   border-radius: 5px;
   border: 1px solid var(--main-color);
   color: var(---main-color);
+  transition: .3s;
 }
 
 .search {
@@ -327,4 +328,14 @@
 .note__buttons__apply:hover {
   background-color: #ffffff10;
   color: var(--elem-bg-color);
+}
+
+.todo-list__no-found  { 
+ 
+}
+
+.todo-list__img{
+  display: block;
+  margin: auto;
+  object-fit: cover;
 }

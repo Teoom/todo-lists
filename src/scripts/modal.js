@@ -3,7 +3,8 @@ export function modal(
   todosList,
   renderNote,
   getTodos,
-  updateLocal
+  updateLocal,
+  deleteNoFound
 ) {
   const modal = document.querySelector(".modal-note");
   const btnCancel = document.querySelector(".note__buttons__cancel");
@@ -21,18 +22,39 @@ export function modal(
   });
 
   btnApply.addEventListener("click", () => {
+
     if (newTodo.value.length <= 3) {
       alert("You must enter a note from 3 to 50 characters!");
       newTodo.value = "";
     } else {
-      modal.style.display = "none";
-      const item = renderNote(false, newTodo.value, true);
-      todosList.append(item);
-      todosItems.length
-        ? (todosItems = [...todosItems, ...getTodos()])
-        : (todosItems = getTodos());
-      newTodo.value = "";
-      updateLocal(todosList);
+      todosList.children.length === 1 && todosList.children[0].className === `todo-list__no-found` ?
+      localStorage.setItem('ids', '0') : "";
+      todosList.children[0].className === `todo-list__no-found` ? deleteNoFound(todosList) : ""
+     
+
+      if (localStorage.getItem('ids')) {
+        const id = localStorage.getItem('ids')
+        modal.style.display = "none";
+        const item = renderNote(id, false, newTodo.value, true);
+        todosList.append(item);
+        todosItems.length
+          ? (todosItems = [...todosItems, ...getTodos()])
+          : (todosItems = getTodos());
+        newTodo.value = "";
+        localStorage.setItem('ids', `${+localStorage.getItem('ids') + 1}`)
+        updateLocal(todosList)
+      } else {
+        modal.style.display = "none";
+        const item = renderNote(0, newTodo.value, true);
+        todosList.append(item);
+        todosItems.length
+          ? (todosItems = [...todosItems, ...getTodos()])
+          : (todosItems = getTodos());
+        newTodo.value = "";
+        localStorage.setItem('ids', "1")
+        updateLocal(todosList)
+      }
+
     }
   });
 }

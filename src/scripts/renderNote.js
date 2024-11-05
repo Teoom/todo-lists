@@ -1,7 +1,8 @@
-export function renderNote(status, value, isDisabled) {
+export function renderNote(id, status, value, isDisabled) {
   const li = document.createElement("li");
   li.className = "todos-list__item";
   status ? li.classList.add("item-correct") : "";
+  li.setAttribute('data-id', id)
 
   const span = document.createElement("span");
   span.className = "todo-list__square";
